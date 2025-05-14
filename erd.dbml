@@ -1,34 +1,4 @@
-# 📚 Library Management System
 
-## 📝 Project Description
-
-This project is a complete, normalized, and scalable **Library Management System** built entirely with **MySQL**.
-
-## 🚀 Features
-
-- 📚 Manage books, authors, and categories
-- 👥 Handle borrowers and memberships
-- 🧑‍💼 Admin panel via `Staff` table for managing librarians
-- 🔄 Track current and historical book loans
-- 🗂️ Fully normalized schema (up to 3NF)
-- 🔐 Secure design with hashed password field for staff
-
-## 🧰 Technologies Used
-
-- MySQL 8+
-- MySQL Workbench / VS Code
-- GitHub
-
-## 🗂️ How to Set Up
-
-1. Clone the repository
-2. Run the `library_management_system.sql` in your SQL client
-
-## 📊 Entity Relationship Diagram (ERD)
-
-Paste this into https://dbdiagram.io:
-
-\`\`\`dbml
 Table Staff {
   staff_id int [pk, increment]
   full_name varchar(100)
@@ -100,4 +70,3 @@ Ref: Loans.staff_id > Staff.staff_id
 Ref: Loan_History.book_id > Books.book_id
 Ref: Loan_History.borrower_id > Borrowers.borrower_id
 Ref: Loan_History.processed_by > Staff.staff_id
-\`\`\`
