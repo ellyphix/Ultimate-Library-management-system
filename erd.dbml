@@ -1,8 +1,7 @@
-
 Table Staff {
   staff_id int [pk, increment]
   full_name varchar(100)
-  role enum('Admin', 'Librarian', 'Assistant')
+  role varchar(20) // Replace enum with varchar
   email varchar(255) [unique]
   password_hash varchar(255)
   created_at timestamp
@@ -12,7 +11,7 @@ Table Authors {
   author_id int [pk, increment]
   author_name varchar(255)
   nationality varchar(100)
-  birth_year year
+  birth_year int // Replaced year with int
 }
 
 Table Books {
@@ -20,7 +19,7 @@ Table Books {
   title varchar(255)
   isbn varchar(20) [unique]
   publisher varchar(255)
-  publication_year year
+  publication_year int // Replaced year with int
   total_copies int
   available_copies int
 }
@@ -28,7 +27,7 @@ Table Books {
 Table Book_Authors {
   book_id int
   author_id int
-  [pk: book_id, author_id]
+  primary key (book_id, author_id)
 }
 
 Table Borrowers {
@@ -38,7 +37,7 @@ Table Borrowers {
   email varchar(255) [unique]
   phone varchar(20)
   membership_date date
-  status enum('Active', 'Inactive', 'Banned')
+  status varchar(20) // Replaced enum with varchar
 }
 
 Table Loans {
@@ -49,7 +48,7 @@ Table Loans {
   loan_date date
   due_date date
   return_date date
-  status enum('Borrowed', 'Returned', 'Overdue')
+  status varchar(20) // Replaced enum with varchar
 }
 
 Table Loan_History {
