@@ -1,5 +1,5 @@
 -- 📚 library_management_system.sql
--- ✅ Enhanced Schema for a Full-Featured Library Management System
+-- Enhanced Schema for a Full-Featured Library Management System
 
 DROP TABLE IF EXISTS Loan_History;
 DROP TABLE IF EXISTS Loans;
