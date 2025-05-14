@@ -1,103 +1,65 @@
-# 📚 Library Management System
+# Library Management System
+## Project Description
+This project is a **Library Management System** designed to manage library operations effectively. It allows the management of books, authors, borrowers, staff, and book loans, tracking all activities related to borrowing and returning books. The system supports many-to-many relationships between books and authors and maintains detailed loan history for accountability.
 
-## 📝 Project Description
+The database schema is implemented using MySQL and is represented in DBML for easy visualization and maintenance.
+---
+## Features
+- Manage multiple authors per book and vice versa (Many-to-Many relationship)
+- Track borrowers and their borrowing history
+- Manage staff responsible for loan processing
+- Handle book inventory with total and available copies
+- Maintain loan status and history for accountability and reporting
+---
+## Database Structure
 
-This project is a complete, normalized, and scalable **Library Management System** built entirely with **MySQL**.
+The schema consists of the following tables:
 
-## 🚀 Features
+- *Staff*: Library staff including roles like Admin, Librarian, and Assistant.
+- *Authors*: Information about book authors.
+- *Books*: Book details including ISBN, publisher, copies available.
+- *Book_Authors**: Join table linking books and authors.
+- *Borrowers*: Library members who borrow books.
+- *Loans*: Current active loans of books to borrowers.
+- *Loan_History**: Records of past loans and returns for auditing.
 
-- 📚 Manage books, authors, and categories
-- 👥 Handle borrowers and memberships
-- 🧑‍💼 Admin panel via `Staff` table for managing librarians
-- 🔄 Track current and historical book loans
-- 🗂️ Fully normalized schema (up to 3NF)
-- 🔐 Secure design with hashed password field for staff
+---
 
-## 🧰 Technologies Used
+## How to Set Up and Run
 
-- MySQL 8+
-- MySQL Workbench / VS Code
-- GitHub
+### Step 1: Clone the repository
+```bash
+git clone https://github.com/your-username/library-management-system.git
+cd library-management-system
 
-## 🗂️ How to Set Up
+#Visualize the database schema with DBML#
+The project includes a .dbml file for easy visualization of the schema. You can use dbdiagram.io to open the library_management_system.dbml file:
 
-1. Clone the repository
-2. Run the `library_management_system.sql` in your SQL client
+Go to dbdiagram.io
 
-## 📊 Entity Relationship Diagram (ERD)
+Import the .dbml file in the repository
 
-Paste this into https://dbdiagram.io:
+View and export the ERD diagram
 
-\`\`\`dbml
-Table Staff {
-  staff_id int [pk, increment]
-  full_name varchar(100)
-  role enum('Admin', 'Librarian', 'Assistant')
-  email varchar(255) [unique]
-  password_hash varchar(255)
-  created_at timestamp
-}
 
-Table Authors {
-  author_id int [pk, increment]
-  author_name varchar(255)
-  nationality varchar(100)
-  birth_year year
-}
+**Project Structure**
 
-Table Books {
-  book_id int [pk, increment]
-  title varchar(255)
-  isbn varchar(20) [unique]
-  publisher varchar(255)
-  publication_year year
-  total_copies int
-  available_copies int
-}
+library-management-system/
+│
+├── library_management_system.sql    # SQL schema with tables and constraints
+├── library_management_system.dbml   # DBML schema for visualization
+└── README.md                        # This documentation file
 
-Table Book_Authors {
-  book_id int
-  author_id int
-  [pk: book_id, author_id]
-}
 
-Table Borrowers {
-  borrower_id int [pk, increment]
-  first_name varchar(100)
-  last_name varchar(100)
-  email varchar(255) [unique]
-  phone varchar(20)
-  membership_date date
-  status enum('Active', 'Inactive', 'Banned')
-}
 
-Table Loans {
-  loan_id int [pk, increment]
-  book_id int
-  borrower_id int
-  staff_id int
-  loan_date date
-  due_date date
-  return_date date
-  status enum('Borrowed', 'Returned', 'Overdue')
-}
 
-Table Loan_History {
-  history_id int [pk, increment]
-  book_id int
-  borrower_id int
-  loan_date date
-  due_date date
-  return_date date
-  processed_by int
-}
 
-Ref: Book_Authors.book_id > Books.book_id
-Ref: Book_Authors.author_id > Authors.author_id
-Ref: Loans.book_id > Books.book_id
-Ref: Loans.borrower_id > Borrowers.borrower_id
-Ref: Loans.staff_id > Staff.staff_id
-Ref: Loan_History.book_id > Books.book_id
-Ref: Loan_History.borrower_id > Borrowers.borrower_id
-Ref: Loan_History.processed_by > Staff.staff_id
-\`\`\`
+
+
+
+
+
+
+
+
+\
